@@ -12,19 +12,23 @@ let authRoutes = require('./server-assets/auth/routes')
 //no auth
 let runelite = require('./server-assets/routes/runelite')
 
+// var allowCrossDomain = function (req, res, next) {
+//   res.header('Access-Control-Allow-Origin', "*");
+//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type');
+//   next();
+// }
 
 
-
-var whitelist = ['http://localhost:8080', 'http://localhost:8081', 'http://localhost:8082', 'http://localhost:8083']
-var corsOptions = {
+var whitelist = ['http://localhost:8080', 'http://localhost:8081', 'http://localhost:8082', 'http://localhost:8083', 'http://localhost:3000', 'http://localhost:5000', 'http://localhost:5001']
+let corsOptions = {
   origin: function (origin, callback) {
-    var originIsWhiteListed = whitelist.indexOf(origin) !== -1;
-    callback(null, originIsWhiteListed);
+    let originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+    callback(null, originIsWhitelisted);
   },
   credentials: true
-}
-
-server.use(cors())
+};
+server.use(cors(corsOptions))
 server.use(session)
 server.use(bp.json())
 server.use(bp.urlencoded({ extended: true }))

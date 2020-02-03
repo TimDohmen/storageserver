@@ -8,7 +8,7 @@ var store = new mongoStore({
 });
 
 // IF THERE IS AN ERROR GETTING THE SESSION
-store.on("error", function(err) {
+store.on("error", function (err) {
     console.log("[SESSION ERROR]", err);
 })
 
@@ -16,7 +16,7 @@ store.on("error", function(err) {
 var session = expressSession({
     secret: "nightclass-music",
     cookie: {
-        maxAge: (1000 * 60 * 60 * 24 * 7) * 52 
+        maxAge: (1000 * 60 * 60 * 24 * 7) * 52
     },
     store,
     resave: true,
