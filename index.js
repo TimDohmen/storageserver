@@ -28,7 +28,7 @@ let corsOptions = {
   },
   credentials: true
 };
-server.use(cors(corsOptions))
+server.use(cors())
 server.use(session)
 server.use(bp.json())
 server.use(bp.urlencoded({ extended: true }))
